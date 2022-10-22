@@ -1,0 +1,86 @@
+import matplotlib.pyplot as plt
+
+
+
+ 
+
+print("Constante K:")
+
+k = 180 #int(input())
+
+
+
+print("Massa m:")
+
+m = 0.5 #int(input())
+
+print("Atrito do ar b:")
+
+b = 10 #int(input())
+
+t = 0.00
+
+amostragem = 102
+
+tempo = list(range(amostragem))
+
+dt = 0.01
+
+v = list(range(amostragem))
+
+x = list(range(amostragem))
+
+a = list(range(amostragem))
+
+
+ 
+
+v[0] = 0
+
+x[0] = 10
+
+a[0] = (-x[0] * k)/m
+
+tempo[0] = 0
+
+
+
+
+
+ 
+
+for i in range(1, amostragem):
+
+   
+
+    v[i] = v[i - 1] + dt * a[i - 1]
+
+    x[i] = x[i - 1] + dt * v[i - 1]
+
+
+ 
+
+    a[i] = ((-x[i - 1]*k)/m - (b*v[i - 1])/m)
+
+   
+
+    #retirar comentario (#) da proxima linha se quiser checar os valores plotados
+
+    #print(f'x({t:,.2f}): {x[i]:,.3f}',f'v({t:,.2f}): {v[i]:,.3f}', f'a({t:,.2f}): {a[i]:,.3f}')
+
+   
+
+    t += dt
+
+    tempo[i] = t
+
+
+ 
+
+plt.plot(tempo, a)
+
+plt.plot(tempo, v)
+
+plt.plot(tempo, x)
+
+plt.show()
